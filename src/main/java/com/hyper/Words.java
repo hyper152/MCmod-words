@@ -1,24 +1,21 @@
 package com.hyper;
 
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Words implements ModInitializer {
-	public static final String MOD_ID = "words";
+    // 模组ID（必须和 fabric.mod.json 中的 id 一致）
+    public static final String MOD_ID = "words";
+    // 日志对象
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Hello Fabric world!");
-	}
+    @Override
+    public void onInitialize() {
+        // 主初始化日志
+        LOGGER.info("Initializing Words Mod for 1.21.1!");
+        
+        // 注册方块/物品等逻辑可后续添加，先保证能启动
+        ModBlocks.registerModBlocks();
+    }
 }
