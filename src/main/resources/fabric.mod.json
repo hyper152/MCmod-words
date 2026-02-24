@@ -3,7 +3,7 @@
   "id": "words",
   "version": "${version}",
   "name": "Words Mod",
-  "description": "Fabric mod for Minecraft 1.21.1 (no mixin)",
+  "description": "A transparent writing block mod for Minecraft 1.21.1",
   "authors": ["hyper"],
   "license": "MIT",
   "environment": "*",

@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "block/block",
   "textures": {
-    "all": "words:block/writing_block"
-  }
+    "particle": "minecraft:block/barrier"
+  },
+  "elements": []
 }

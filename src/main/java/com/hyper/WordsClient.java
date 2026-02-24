@@ -1,18 +1,22 @@
 package com.hyper;
 
+import com.hyper.client.WritingBlockEntityRenderer;
+
 import net.fabricmc.api.ClientModInitializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
+import net.minecraft.client.render.RenderLayer;
 
 public class WordsClient implements ClientModInitializer {
-    // 日志对象（和主类保持一致）
-    public static final Logger LOGGER = LoggerFactory.getLogger(Words.MOD_ID);
-
     @Override
     public void onInitializeClient() {
-        // 客户端初始化日志（验证加载）
-        LOGGER.info("Initializing Words Mod Client for 1.21.1!");
+        // 设置方块渲染为透明
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WRITING_BLOCK, RenderLayer.getTranslucent());
         
-        // 暂时无其他逻辑，先保证能启动
+        // 注册方块实体渲染器
+        BlockEntityRendererRegistry.register(ModBlockEntities.WRITING_BLOCK_ENTITY,
+                WritingBlockEntityRenderer::new);
+        
+        Words.LOGGER.info("Words Client initialized");
     }
 }
