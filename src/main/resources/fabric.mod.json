@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "words",
-  "version": "1.0.1",
+  "version": "${version}",
   "name": "Words Mod",
   "description": "A transparent writing block mod for Minecraft 1.21.1",
   "authors": ["hyper"],
