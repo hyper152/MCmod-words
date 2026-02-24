@@ -2,8 +2,6 @@ package com.hyper.block;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.hyper.client.WritingScreen;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -28,11 +26,13 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
+// 删除内部的 BlockClientProxy 类，使用外部类
+// import com.hyper.block.BlockClientProxy; // 如果放在不同包需要导入
+
 public class WritingBlock extends Block implements BlockEntityProvider {
     
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     
-    // 使用空形状，让方块完全不可见
     private static final VoxelShape EMPTY_SHAPE = VoxelShapes.empty();
 
     public WritingBlock(Settings settings) {
@@ -108,7 +108,6 @@ public class WritingBlock extends Block implements BlockEntityProvider {
         return 1.0f;
     }
 
-    // 添加这个方法，让方块所有面都不可见
     @Override
     public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
         return true;
@@ -146,12 +145,8 @@ public class WritingBlock extends Block implements BlockEntityProvider {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof WritingBlockEntity) {
-                net.minecraft.client.MinecraftClient.getInstance().setScreen(
-                    new WritingScreen(pos, state.get(FACING))
-                );
-            }
+            // 使用外部代理类
+            BlockClientProxy.openScreen(pos, state.get(FACING));
         }
         return ActionResult.SUCCESS;
     }

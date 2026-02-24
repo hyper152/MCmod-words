@@ -4,3 +4,6 @@ gradlew clean
 
 # 然后重新运行
 gradlew runClient
+
+
+gradlew build
